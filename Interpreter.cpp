@@ -1,13 +1,14 @@
-#include "BrainfuckInterpreter.hpp"
+#include "Interpreter.hpp"
+#include "Tape.hpp"
 
 #include <map>
 #include <sstream>
 #include <stack>
 #include <vector>
 
-void BrainfuckInterpreter::interpret(const CinFunction& cin_function,
-                                     const CoutFunction& cout_function,
-                                     const std::string& code)
+void Interpreter::interpret(const CinFunction& cin_function,
+                            const CoutFunction& cout_function,
+                            const std::string& code)
 {
   //Preprocessing: Remove all non-code characters
   std::stringstream d;
@@ -49,40 +50,39 @@ void BrainfuckInterpreter::interpret(const CinFunction& cin_function,
     }
   }
 
-  std::vector<char> memory(5000, 0); //TODO: change to on-demand memory?
+  Tape tape;
   auto ip = code_stripped.data();
   const char* ip_end = code_stripped.data() + code_stripped.size();
-  auto dp = memory.data();
 
   //Interpret code until finished
   while (ip != ip_end)
   {
     switch (*ip)
     {
-      case '>': //increment current byte address
-        ++dp;
+      case '>': //increment tape position
+        ++tape;
         break;
-      case '<': //decrement current byte address
-        --dp;
+      case '<': //decrement tape position
+        --tape;
         break;
-      case '+': //increment current byte value
-        ++*dp;
+      case '+': //increment value at current tape position
+        ++*tape;
         break;
-      case '-': //decrement current byte value
-        --*dp;
+      case '-': //decrement value at current tape position
+        --*tape;
         break;
-      case '.': //output current byte
-        cout_function(*dp);
+      case '.': //output value at current tape position
+        cout_function(*tape);
         break;
-      case ',': //read to current byte
-        *dp = cin_function();
+      case ',': //store value at current tape position
+        *tape = cin_function();
         break;
       case '[': //loop start
-        if (*dp == 0)
+        if (*tape == 0)
           ip = jump_table[ip]; //jump to loop end
         break;                 //do nothing
       case ']': //loop end
-        if (*dp != 0)
+        if (*tape != 0)
           ip = jump_table[ip]; //jump to loop start
         break;                 //do nothing
     }

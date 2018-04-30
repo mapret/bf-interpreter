@@ -1,4 +1,4 @@
-#include "BrainfuckInterpreter.hpp"
+#include "Interpreter.hpp"
 
 #include <chrono>
 #include <fstream>
@@ -20,12 +20,12 @@ int main(int argc, char** argv)
   std::stringstream buffer;
   buffer << file_in.rdbuf();
 
-  BrainfuckInterpreter::interpret(getchar, putchar, buffer.str());
+  Interpreter::interpret(getchar, putchar, buffer.str());
 
   //Code for benchmarking purposes
   /*int cnt = 0;
   auto start = std::chrono::high_resolution_clock::now();
-  BrainfuckInterpreter::interpret([&cnt]() { return "123456789\n"[cnt++]; }, putchar, buffer.str());
+  Interpreter::interpret([&cnt]() { return "123456789\n"[cnt++]; }, putchar, buffer.str());
   auto end = std::chrono::high_resolution_clock::now();
   std::cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() / 1000.f << "s" << std::endl;*/
 

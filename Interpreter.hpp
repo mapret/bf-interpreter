@@ -5,7 +5,7 @@
 using CinFunction = std::function<char()>;
 using CoutFunction = std::function<void(char)>;
 
-class BrainfuckInterpreter
+class Interpreter
 {
   public:
     static void interpret(const CinFunction& cin_function,
