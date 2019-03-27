@@ -67,7 +67,7 @@ int Tester::test()
   const char* correct_string = num_wrong == 0 ? "[OK]" : "[ERROR]";
   int num_written;
   printf("Total correct/wrong: %d/%d%n", num_correct, num_wrong, &num_written);
-  printf("%s%s     %f\n", std::string(size_t(59 - num_written), ' ').c_str(), correct_string, time.count());
+  printf("%s%s     %.2f\n", std::string(size_t(59 - num_written), ' ').c_str(), correct_string, time.count());
 
   return num_wrong;
 }
