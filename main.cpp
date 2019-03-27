@@ -1,4 +1,5 @@
 #include "Interpreter.hpp"
+#include "Tester.hpp"
 
 #include <chrono>
 #include <fstream>
@@ -9,6 +10,11 @@ int main(int argc, char** argv)
 {
   if (argc != 2)
     return 1;
+
+  if (std::string(argv[1]) == "test")
+  {
+    return Tester::test();
+  }
 
   std::ifstream file_in(argv[1], std::ios::binary);
   if (!file_in)
