@@ -30,9 +30,9 @@ void Interpreter::interpret(const CinFunction& cin_function,
   std::string code_stripped = d.str();
 
   //Create jump table for fast calls to [ and ]
-  std::map<const char*, const char*> jump_table;
+  std::map<char*, char*> jump_table;
   {
-    std::stack<const char*> opening_brackets;
+    std::stack<char*> opening_brackets;
     auto end = code_stripped.data() + code_stripped.size();
     for (auto it = code_stripped.data(); it != end; it++)
     {
