@@ -3,5 +3,5 @@
 
 namespace Tester
 {
-    int test();
+    int test(bool simple = true);
 };

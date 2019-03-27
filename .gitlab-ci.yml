@@ -17,4 +17,4 @@ build:
 test:
   stage: test
   script:
-   - build/bf test
+   - build/bf test-simple

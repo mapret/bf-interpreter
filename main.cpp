@@ -11,9 +11,13 @@ int main(int argc, char** argv)
   if (argc != 2)
     return 1;
 
-  if (std::string(argv[1]) == "test")
+  if (std::string(argv[1]) == "test-simple")
   {
     return Tester::test();
+  }
+  if (std::string(argv[1]) == "test")
+  {
+    return Tester::test(false);
   }
 
   std::ifstream file_in(argv[1], std::ios::binary);

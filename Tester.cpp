@@ -3,18 +3,30 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <set>
 
 
 namespace fs = std::filesystem;
 using Clock = std::chrono::high_resolution_clock;
 
-int Tester::test()
+int Tester::test(bool simple)
 {
+  std::set<std::string> long_testcases = {
+      "Collatz",
+      "Counter",
+      "EasyOpt",
+      "Factor",
+      "Hanoi",
+      "Life",
+      "Mandelbrot",
+      "Mandelbrot-tiny"
+  };
+
   std::vector<std::string> tests;
   for (const auto& direntry : fs::directory_iterator("test"))
   {
     const auto& path = direntry.path();
-    if (path.extension() == ".b")
+    if (path.extension() == ".b" && (!simple || long_testcases.find(path.stem()) == long_testcases.end()))
       tests.push_back(path.stem());
   }
   std::sort(tests.begin(), tests.end());
