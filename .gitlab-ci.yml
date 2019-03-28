@@ -12,9 +12,9 @@ build:
    - cmake --build .
   artifacts:
     paths:
-     - build/bf
+     - build/test/bf-test
 
 test:
   stage: test
   script:
-   - build/bf test-simple
+   - build/test/bf-test

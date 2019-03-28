@@ -3,8 +3,17 @@ cmake_minimum_required(VERSION 3.0.2)
 project(bf)
 set(CMAKE_CXX_STANDARD 17)
 
-file(GLOB sources "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
-file(GLOB headers "${CMAKE_CURRENT_SOURCE_DIR}/*.hpp")
+set(sources
+  Interpreter.cpp
+  Tape.cpp
+)
+set(headers
+  Interpreter.hpp
+  Tape.hpp
+)
+add_library(${PROJECT_NAME}-lib STATIC ${sources} ${headers})
 
-add_executable(${PROJECT_NAME} ${sources} ${headers})
-target_link_libraries(${PROJECT_NAME} stdc++fs)
+add_subdirectory(test)
+
+add_executable(${PROJECT_NAME} main.cpp)
+target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib stdc++fs)
