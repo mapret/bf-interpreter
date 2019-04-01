@@ -1,7 +1,5 @@
 #include "Interpreter.hpp"
-#include "Tester.hpp"
 
-#include <chrono>
 #include <fstream>
 #include <iostream>
 #include <sstream>
