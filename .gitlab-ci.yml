@@ -1,4 +1,4 @@
-image: mapret/cppimage:v1
+image: mapret/cppimage:latest
 
 stages:
   - build
