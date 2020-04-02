@@ -1,6 +1,6 @@
-# Brainfuck interpreter
+# Brainf*ck interpreter
 
-Yet another implementation of the [brainfuck](https://esolangs.org/wiki/brainfuck) esotheric programming language, developed in C++.
+Yet another implementation of the [brainf*ck](https://esolangs.org/wiki/brainfuck) esotheric programming language, developed in C++.
 
 ## Building
 
